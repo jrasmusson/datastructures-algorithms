@@ -1,4 +1,7 @@
 ![](images/banner.png)
 
-# Data Structures & Algorithms for  Swift Developers
+![](images/construction.gif) Coming soon
 
+# Big O Notation
+
+- What is Big O Notation?
