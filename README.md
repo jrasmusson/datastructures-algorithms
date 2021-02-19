@@ -1,7 +1,7 @@
 ![](images/banner.png)
 
-![](images/construction.gif) Coming soon
+![](images/construction.gif) 
 
-# Big O Notation
+
 
 - What is Big O Notation?
