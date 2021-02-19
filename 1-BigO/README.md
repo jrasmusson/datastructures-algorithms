@@ -75,5 +75,66 @@ When you compare these operations on a [graph](https://www.bigocheatsheet.com/),
 
 Algorithms that fall into the lower right (O(1), O(logn)) are considered very good. Linear time O(n) isn't bad. But anything above that isn't considered very performant, like O(n^2).
 
+## Space complexity
 
+So far everything we have looked at has to do with time. And when we talk Big O, it is usually time complexity we are referring to. But there is another side to the coin, and that is space.
 
+Space complexity works just like time in that when evaluating an algorithms space complexity, we look at see how many variables are declared, and their relative cost.
+
+Simple variable declarations are O(1). While arrays and other data structures of relative size or O(n).
+
+## Trading off space of time
+
+One of the biggest improvements we can make in algorithms is to trade off space for time.
+
+Take this typicaly interview question for example:
+
+> Given two arrays, create a function that let's a user know whether these two arrays contain any common items.
+
+A brute force way to answer this question would be to loop through every element in both arrays until a match is found. Very efficient in terms of space. Slow in terms of time O(n^2).
+
+```swift
+// Naive brute force O(n^2)
+func commonItemsBrute(_ A: [Int], _ B: [Int]) -> Bool {
+    for i in 0..<A.count {
+        for j in 0..<B.count {
+            if A[i] == B[j] {
+                return true
+            }
+        }
+    }
+    return false
+}
+commonItemsBrute([1, 2, 3], [4, 5, 6])
+commonItemsBrute([1, 2, 3], [3, 5, 6])
+```
+
+On the other hand if we were OK sacrificing some space, we could get a better time if we created a Hash Map of one array and then used it to quickly look-up the answer in the other.
+
+```swift
+// Convert to hash and lookup via other index
+func commonItemsHash(_ A: [Int], _ B: [Int]) -> Bool {
+    
+    // Still looping...but not nested - O(2n) vs O(n^2)
+    var hashA = [Int: Bool]()
+    for a in A { // O(n)
+        hashA[a] = true
+    }
+    
+    // Now lookup in the hash to see if elements of B exist
+    for b in B {
+        if hashA[b] == true {
+            return true
+        }
+    }
+    return false
+}
+commonItemsHash([1, 2, 3], [4, 5, 6])
+commonItemsHash([1, 2, 3], [3, 5, 6])
+```
+
+This is an example of trading of space for time. The brute force way required no extra space. Here is was very good. But in terms of time it was very slow. Not performant.
+
+By taking some space however (the extra Hash Map), we gained a lot of time, and got a much faster algorith (O(n)) as a result.
+
+This is just one trick we can use to improve the performance of our algorithms. And this is what the Googles, Facebooks, and Amazons will be looking for in their interviews.
