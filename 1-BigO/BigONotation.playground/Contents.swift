@@ -20,12 +20,31 @@ func findNemo(_ arr: [String]) {
     let after = Date()
     let component = Calendar.current.dateComponents([.nanosecond], from: before, to: after)
     let milliSeconds: Double = Double(component.nanosecond! / 1000000)
-    print("Finding nemo took: \(milliSeconds))")
+//    print("Finding nemo took: \(milliSeconds))")
 }
 
 //let nemo = ["nemo"]
-let nemo = Array<String>(repeating: "", count: 1)
+let nemo = Array<String>(repeating: "", count: 100000)
 findNemo(nemo)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Constant time O(1)
 func constantTime(_ n: Int) -> Int {
@@ -39,10 +58,11 @@ func linearTime(_ A: [Int]) -> Int {
         if A[i] == 0 {
             return 0
         }
+//        print(i)
     }
     return 1
 }
-linearTime([1, 2, 4])
+linearTime([1, 2, 3])
 
 // Logarithmic time O(log n)
 func logarithmicTime(_ N: Int) -> Int {
@@ -50,7 +70,7 @@ func logarithmicTime(_ N: Int) -> Int {
     var result = 0
     while n > 1 {
         n /= 2
-        print(n)
+//        print(n)
         result += 1
     }
     return result
@@ -63,7 +83,7 @@ func quadratic(_ n: Int) -> Int {
     for i in 0..<n {
         for j in i..<n {
             result += 1
-            print("\(i) \(j)")
+//            print("\(i) \(j)")
         }
     }
     return result
@@ -75,6 +95,25 @@ arr.append(4)
 
 var set = Set<Int>()
 set.count
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  Given two arrays, create a function that let's a user know whether these two arrays contain any common items.
