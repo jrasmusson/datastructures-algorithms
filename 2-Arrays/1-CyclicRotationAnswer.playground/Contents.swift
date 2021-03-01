@@ -37,27 +37,20 @@ func rotateRightOnce(A: [Int]) -> [Int] {
     return newArray
 }
 
-func rotateLeftOnce(A: [Int]) -> [Int] {
-    var newArray = Array<Int>(repeating: 0, count: A.count)
-    for i in 1..<A.count {
-        newArray[i - 1] = A[i]
-    }
-    newArray[A.count - 1] = A.first!
-    
-    return newArray
-}
-
 rotateRightOnce(A: [0])
 rotateRightOnce(A: [1, 2, 3])
-
-rotateLeftOnce(A: [0])
-rotateLeftOnce(A: [1, 2, 3])
 
 solution(A: [], K: 0)
 solution(A: [], K: 1)
 solution(A: [-4], K: 0)
 solution(A: [-4], K: 1)
 solution(A: [1, 2, 3], K: 4)
+
+solution(A: [1, 2, 3, 4, 5], K: 1)
+solution(A: [1, 2, 3, 4, 5], K: 2)
+solution(A: [1, 2, 3, 4, 5], K: 3)
+
+solution(A: [3, 8, 9, 7, 6], K: 3) // [9, 7, 6, 3, 8]
 
 /*
  Using a stack
