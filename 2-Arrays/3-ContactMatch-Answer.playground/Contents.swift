@@ -13,10 +13,9 @@ import Foundation
  B = ["999999999", "777888999"] // Phone numbers for each contact A[i] = B[i]
  P = "88999"                    // Search phrase
 
+ Answer should be correct. Don't worry about performance.
  */
 public func solution(_ A : [String], _ B : [String], _ P : String) -> String {
-    
-    // create a pointer
     var result = [String]()
     
     // loop through looking for match - when found add to result
@@ -40,9 +39,9 @@ let A = ["pim", "pom"]
 let B = ["999999999", "777888999"]
 let P = "88999"
 
-solution(A, B, P)
-solution(["sander", "amy", "ann"], ["12345", "23456", "123"], "1")
-solution(["ada,", "eva", "leo"], ["1212", "1111", "4444"], "112")
+solution(A, B, P)   // pom
+solution(["sander", "amy", "ann"], ["12345", "23456", "123"], "1")  // ann
+solution(["ada,", "eva", "leo"], ["1212", "1111", "4444"], "112")   // NO CONTACT
 
 // edge cases
 solution([String](), [String](), "")
