@@ -58,13 +58,13 @@ func solution(_ S : String) -> String {
     return String(chars)
 }
 
-solution("123456789")
-solution("555372654")
-solution("0 - 22 1985--324")
+solution("123456789")           // 123-456-789
+solution("555372654")           // 555-372-654
+solution("0 - 22 1985--324")    // 022-198-53-24
 
-// 2 digits
-solution("01")
-solution("012")
-solution("0123")
-solution("0123       444")
-solution("------0123       444")
+// Edge cases
+solution("01")                          // 01
+solution("012")                         // 012
+solution("0123")                        // 01-23
+solution("0123       444")              // 012-34-44
+solution("------0123       444")        // 012-34-44

@@ -17,7 +17,7 @@ import UIKit
  */
 
 func solution(A: [Int], K: Int) -> [Int] {
-
+    // do your work here...
     return [Int]()
 }
 
