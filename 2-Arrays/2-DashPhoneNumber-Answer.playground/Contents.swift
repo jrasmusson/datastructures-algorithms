@@ -44,17 +44,16 @@ func solution(_ S : String) -> String {
         result = String(result.dropLast())
     }
     
-    // if second last char has a dash
-    // reformat last three chars to -XX
+    // if second last char has a dash (-x)
+    // reformat last three chars to (-xx)
     var chars = Array(result)
     let secondLastPtr = chars.count - 2
     if chars[secondLastPtr] == "-" {
-        // set second last char to third last char
-        // set thrid last char to dash
+        // *-x > -*x
         chars[secondLastPtr] = chars[secondLastPtr - 1]
         chars[secondLastPtr - 1] = "-"
     }
-    
+
     return String(chars)
 }
 
