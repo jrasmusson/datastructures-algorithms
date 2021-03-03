@@ -1,72 +1,67 @@
 import Foundation
 
-class Node<T> {
-    
-    var data: T
+class Node {
+    var data: Int
     var next: Node?
     
-    init(data: T, next: Node? = nil) {
+    init(_ data: Int, _ next: Node? = nil) {
         self.data = data
         self.next = next
     }
 }
 
-class LinkList<T>: CustomStringConvertible where T: Comparable, T: CustomStringConvertible {
-
-    private var startNode: Node<T>?
+class LinkList {
+    private var head: Node?
     
     var isEmpty: Bool {
-        return self.startNode == nil
+        return head == nil
+    }
+    
+    func clear() {
+        head = nil
+    }
+    
+    func addFront(_ data: Int) {
+        let newNode = Node(data)
+        newNode.next = head
+        head = newNode
     }
         
-    // APPEND NODE FROM LAST
-    func append(element: T) {
-        let item = Node(data: element)
-        if var node = self.startNode {
+    func addBack(_ data: Int) {
+        let newNode = Node(data)
+        if var node = head {
             while(node.next != nil) {
                 node = node.next!
             }
-            node.next = item
+            node.next = newNode
         } else {
-            self.startNode = item
+            head = newNode
         }
     }
     
-    // INSERT NODE AT BEGINNING
-    func insert(element: T) {
-        let item = Node(data: element)
-        item.next = self.startNode
-        self.startNode = item
-    }
-    
-    // INSERT NODE AT PARTICULAR POSITION
-    func insert(position: Int, element: T) {
+    func insert(position: Int, data: Int) {
         if position == 0 {
-            self.insert(element: element)
-        } else {
-            let item = Node(data: element)
-            var nextNode = self.startNode
-            var previousNode: Node<T>?
-            
-            for _ in 0..<position {
-                previousNode = nextNode
-                nextNode = nextNode?.next
-            }
-            
-            previousNode?.next = item
-            item.next = nextNode
+            addFront(data)
+            return
         }
+            
+        let newNode = Node(data)
+        var currentNode = head
+
+        for _ in 0..<position - 1{
+            currentNode = currentNode?.next!
+        }
+        newNode.next = currentNode?.next
+        currentNode?.next = newNode
     }
     
-    // REMOVE NODE FROM BEGINNING
     func removeFirst() {
-        self.startNode = self.startNode?.next
+        self.head = self.head?.next
     }
     
-    // REMOVE NODE FROM END
     func removeLast() {
-        var nextNode = self.startNode
-        var previousNode: Node<T>?
+        var nextNode = head
+        var previousNode: Node?
         while(nextNode?.next != nil) {
             previousNode = nextNode
             nextNode = nextNode?.next
@@ -74,13 +69,12 @@ class LinkList<T>: CustomStringConvertible where T: Comparable, T: CustomStringC
         previousNode?.next = nil
     }
     
-    // REMOVE NODE AT PARTICULAR POSTION
     func remove(at position: Int) {
         if position == 0 {
             self.removeFirst()
         } else {
-            var nextNode = self.startNode
-            var previousNode: Node<T>?
+            var nextNode = self.head
+            var previousNode: Node?
             for _ in 0..<position {
                 previousNode = nextNode
                 nextNode = nextNode?.next
@@ -89,12 +83,11 @@ class LinkList<T>: CustomStringConvertible where T: Comparable, T: CustomStringC
         }
     }
     
-    // SEARCH A PARTICULAR NODE
-    func search(element: T) -> Int {
-        var node = self.startNode
+    func search(data: Int) -> Int {
+        var node = self.head
         var count = 0
         while(node != nil) {
-            if node?.data == element {
+            if node?.data == data {
                 return count
             }
             count += 1
@@ -103,36 +96,29 @@ class LinkList<T>: CustomStringConvertible where T: Comparable, T: CustomStringC
         return count
     }
     
-    var description: String {
-        var data = ""
-        let top = "### LINK LIST ###\n"
-        let bottom = "\n#############\n"
-        var node = self.startNode
-        while(node != nil) {
-            data += (node?.data.description)! + "\n"
+    func printLinkedList() {
+        if head == nil { return }
+        
+        var result = [Int]()
+        var node = head
+        result.append(node!.data)
+        
+        while node?.next != nil {
+            result.append(node!.next!.data)
             node = node?.next
         }
-        return top + data + bottom
+        
+        print(result)
     }
+
 }
 
-let linkList = LinkList<Int>()
-linkList.append(element: 0)
-linkList.append(element: 1)
-linkList.append(element: 2)
-linkList.append(element: 3)
-linkList.append(element: 4)
-linkList.append(element: 5)
-print(linkList.description)
-linkList.insert(element: 100)
-print(linkList.description)
-linkList.insert(position: 4, element: 1000)
-print(linkList.description)
-print(linkList.search(element: 2))
-print(linkList.description)
-linkList.removeFirst()
-print(linkList.description)
-linkList.removeLast()
-print(linkList.description)
-linkList.remove(at: 2)
-print(linkList.description)
+let linkList = LinkList()
+linkList.addBack(1)
+linkList.addBack(2)
+linkList.addBack(3)
+linkList.printLinkedList()
+linkList.addFront(4)
+linkList.printLinkedList()
+linkList.insert(position: 2, data: 5)
+linkList.printLinkedList()
