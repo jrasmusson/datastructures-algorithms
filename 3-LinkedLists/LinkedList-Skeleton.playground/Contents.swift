@@ -15,23 +15,28 @@ class LinkList {
         
     func addFront(_ data: Int) {
     }
-        
+
+    func getFirst() -> Int {
+        return 0
+    }
+
     func addBack(_ data: Int) {
     }
-    
+
+    func getLast() -> Int {
+        return 0
+    }
+
     func insert(position: Int, data: Int) {
     }
     
     func deleteFirst() {
     }
-    
+
     func deleteLast() {
     }
-    
-    func delete(data: Int) {
-    }
-
-    func printLinkedList() {
+        
+    func delete(at position: Int) {
     }
     
     var isEmpty: Bool {
@@ -40,4 +45,20 @@ class LinkList {
     
     func clear() {
     }
+    
+    func printLinkedList() {
+        if head == nil { return }
+        
+        var result = [Int]()
+        var node = head
+        result.append(node!.data)
+        
+        while node?.next != nil {
+            result.append(node!.next!.data)
+            node = node?.next
+        }
+        
+        print(result)
+    }
+
 }
