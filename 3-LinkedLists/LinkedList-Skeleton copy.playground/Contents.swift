@@ -15,22 +15,30 @@ class LinkList {
         
     func addFront(_ data: Int) {
     }
-        
+
+    func getFirst() -> Int {
+        return 0
+    }
+
     func addBack(_ data: Int) {
     }
-    
+
+    func getLast() -> Int {
+        return 0
+    }
+
     func insert(position: Int, data: Int) {
     }
     
     func deleteFirst() {
     }
-    
-    func deleteLast() {
-    }
-    
+
     func delete(data: Int) {
     }
-    
+
+    func deleteLast() {
+    }
+        
     var isEmpty: Bool {
         return false
     }

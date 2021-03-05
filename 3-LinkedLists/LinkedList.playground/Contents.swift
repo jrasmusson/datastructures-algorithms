@@ -40,7 +40,19 @@ class LinkList {
         }
         node.next = newNode
     }
-    
+
+    func getLast() -> Int {
+        if head == nil {
+            return head!.data
+        }
+
+        var node = head!
+        while(node.next != nil) {
+            node = node.next!
+        }
+        return node.data
+    }
+
     func insert(position: Int, data: Int) {
         if position == 0 {
             addFront(data)
@@ -61,16 +73,6 @@ class LinkList {
         self.head = self.head?.next
     }
     
-    func deleteLast() {
-        var nextNode = head
-        var previousNode: Node?
-        while(nextNode?.next != nil) {
-            previousNode = nextNode
-            nextNode = nextNode?.next
-        }
-        previousNode?.next = nil
-    }
-    
     func delete(at position: Int) {
         if position == 0 {
             self.deleteFirst()
@@ -86,14 +88,22 @@ class LinkList {
         previousNode?.next = nextNode?.next
     }
 
+    func deleteLast() {
+        var nextNode = head
+        var previousNode: Node?
+        while(nextNode?.next != nil) {
+            previousNode = nextNode
+            nextNode = nextNode?.next
+        }
+        previousNode?.next = nil
+    }
+    
     func delete(data: Int) {
-        // if head
         if head == nil { return }
         if head!.data == data {
             head = head?.next
         }
         
-        // else walk the list
         let current = head
         while current?.next != nil {
             if current?.next?.data == data {
@@ -101,6 +111,14 @@ class LinkList {
                 return
             }
         }
+    }
+
+    var isEmpty: Bool {
+        return head == nil
+    }
+    
+    func clear() {
+        head = nil
     }
 
     func printLinkedList() {
@@ -117,22 +135,29 @@ class LinkList {
         
         print(result)
     }
-
-    var isEmpty: Bool {
-        return head == nil
-    }
-    
-    func clear() {
-        head = nil
-    }
 }
 
-let linkList = LinkList()
-linkList.addBack(1)
-linkList.addBack(2)
-linkList.addBack(3)
-linkList.printLinkedList()
-linkList.addFront(4)
-linkList.printLinkedList()
-linkList.insert(position: 2, data: 5)
-linkList.printLinkedList()
+let linkedList = LinkList()
+linkedList.addFront(3)
+linkedList.addFront(2)
+linkedList.addFront(1)
+linkedList.printLinkedList()
+
+linkedList.getFirst()
+
+linkedList.addBack(4)
+linkedList.printLinkedList()
+
+linkedList.getLast()
+
+linkedList.insert(position: 2, data: 5)
+linkedList.printLinkedList()
+
+linkedList.deleteFirst()
+linkedList.printLinkedList()
+
+linkedList.deleteLast()
+linkedList.printLinkedList()
+
+linkedList.delete(at: 1)
+linkedList.printLinkedList()
