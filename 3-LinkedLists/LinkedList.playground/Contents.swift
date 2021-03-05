@@ -55,11 +55,11 @@ class LinkList {
         currentNode?.next = newNode
     }
     
-    func removeFirst() {
+    func deleteFirst() {
         self.head = self.head?.next
     }
     
-    func removeLast() {
+    func deleteLast() {
         var nextNode = head
         var previousNode: Node?
         while(nextNode?.next != nil) {
@@ -69,33 +69,38 @@ class LinkList {
         previousNode?.next = nil
     }
     
-    func remove(at position: Int) {
+    func delete(at position: Int) {
         if position == 0 {
-            self.removeFirst()
-        } else {
-            var nextNode = self.head
-            var previousNode: Node?
-            for _ in 0..<position {
-                previousNode = nextNode
-                nextNode = nextNode?.next
+            self.deleteFirst()
+            return
+        }
+        
+        var nextNode = head
+        var previousNode: Node?
+        for _ in 0..<position {
+            previousNode = nextNode
+            nextNode = nextNode?.next
+        }
+        previousNode?.next = nextNode?.next
+    }
+
+    func delete(data: Int) {
+        // if head
+        if head == nil { return }
+        if head!.data == data {
+            head = head?.next
+        }
+        
+        // else walk the list
+        let current = head
+        while current?.next != nil {
+            if current?.next?.data == data {
+                current?.next = current?.next?.next
+                return
             }
-            previousNode?.next = nextNode?.next
         }
     }
-    
-    func search(data: Int) -> Int {
-        var node = self.head
-        var count = 0
-        while(node != nil) {
-            if node?.data == data {
-                return count
-            }
-            count += 1
-            node = node?.next
-        }
-        return count
-    }
-    
+
     func printLinkedList() {
         if head == nil { return }
         

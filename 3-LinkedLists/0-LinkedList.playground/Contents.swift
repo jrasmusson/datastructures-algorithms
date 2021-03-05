@@ -19,11 +19,26 @@ class Node {
     }
 }
 
+// You can chain them together like this
 let node3 = Node(3)
 let node2 = Node(2, node3)
 let node1 = Node(1, node2)
 
-// We can print them out by walking the list and collecting the result
+// We can print them out by walking the list
+func printLinkedListSimple(_ head: Node?) {
+    if head == nil { return }
+    
+    var node = head
+    print(node!.data)
+    
+    while node?.next != nil {
+        print(node!.next!.data)
+        node = node?.next
+    }
+}
+printLinkedListSimple(node1)
+
+// Here we collect the result and print from an array
 func printLinkedList(_ head: Node?) {
     if head == nil { return }
     
@@ -41,7 +56,6 @@ func printLinkedList(_ head: Node?) {
 
 printLinkedList(node1)
 
-// Adding to the front is as simple as creating a new node and updating the head
 func addFront(_ head: inout Node, data: Int)  {
     let newNode = Node(data)
     newNode.next = head
@@ -85,6 +99,24 @@ func addBack(_ head: Node, data: Int) -> Node {
 }
 
 addBack(head, data: 5)
+printLinkedList(head)
+
+func deleteFirst(_ head: inout Node) {
+    head = head.next!
+}
+deleteFirst(&head)
+printLinkedList(head)
+
+func deleteLast(_ head: inout Node) {
+    var nextNode = head
+    var previousNode: Node?
+    while(nextNode.next != nil) {
+        previousNode = nextNode
+        nextNode = nextNode.next!
+    }
+    previousNode?.next = nil
+}
+deleteLast(&head)
 printLinkedList(head)
 
 func insert(head: Node, data: Int, position: Int) -> Node {
