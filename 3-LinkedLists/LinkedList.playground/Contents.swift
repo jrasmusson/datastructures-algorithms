@@ -41,9 +41,9 @@ class LinkList {
         node.next = newNode
     }
 
-    func getLast() -> Int {
+    func getLast() -> Int? {
         if head == nil {
-            return head!.data
+            return nil
         }
 
         var node = head!
@@ -70,7 +70,7 @@ class LinkList {
     }
     
     func deleteFirst() {
-        self.head = self.head?.next
+        head = head?.next
     }
     
     func delete(at position: Int) {
