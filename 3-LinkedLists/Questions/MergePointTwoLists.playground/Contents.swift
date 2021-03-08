@@ -99,6 +99,45 @@ func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? { // O(m + n)
     return nil
 }
 
+// Insight: If we can line up the arrays, we can walk them once
+func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n)
+    // Figure out which is longer
+    // Swap if necessary
+    
+    // Calculate d
+    // Walk d for longer
+    // Walk remainder for both
+    let m = length(headA) // O(n)
+    let n = length(headB) // O(n)
+
+    var currentA = headA
+    var currentB = headB
+    
+    if n > m {
+        let temp = currentA
+        currentA = currentB
+        currentB = temp
+    }
+    
+    let d = abs(m - n)
+
+    for _ in 1...d { // O(n)
+        currentA = currentA?.next
+    }
+    
+    for _ in 0...n-1 { // O(n)
+        print(4)
+        let A = currentA?.data
+        let B = currentB?.data
+        if A == B {
+            return A
+        }
+        currentA = currentA?.next
+        currentB = currentB?.next
+    }
+    return nil
+}
+
 // 1 2 3 4 5 6
 let node6 = Node(6)
 let node5 = Node(5, node6)
@@ -115,5 +154,37 @@ printLinkedList(node1)
 printLinkedList(node10)
 
 //findMergeBrute(headA: node1, headB: node10)
-findMergeSpaceTime(headA: node1, headB: node10)
+//findMergeSpaceTime(headA: node1, headB: node10)
+findMergeInsight(headA: node1, headB: node10)
+
+
+// Insight: Simple (no swap)
+//func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n)
+//    // Figure out which is longer
+//    // Swap if necessary
+//
+//    // Calculate d
+//    // Walk d for longer
+//    // Walk remainder for both
+//    let m = length(headA) // O(n)
+//    let n = length(headB) // O(n)
+//
+//    let d = m - n
+//    var currentA = headA
+//    for _ in 1...d { // O(n)
+//        currentA = currentA?.next
+//    }
+//
+//    var currentB = headB
+//    for _ in 0...n-1 { // O(n)
+//        let A = currentA?.data
+//        let B = currentB?.data
+//        if A == B {
+//            return A
+//        }
+//        currentA = currentA?.next
+//        currentB = currentB?.next
+//    }
+//    return nil
+//}
 
