@@ -100,14 +100,14 @@ func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? { // O(2m + 2n)
 }
 
 // Insight: If we can line up the arrays, we can walk them once
-func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n)
+func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n + m)
     // Figure out which is longer
     // Swap if necessary
     
     // Calculate d
     // Walk d for longer
     // Walk remainder for both
-    let m = length(headA) // O(n)
+    let m = length(headA) // O(m)
     let n = length(headB) // O(n)
 
     var currentA = headA
@@ -159,32 +159,32 @@ findMergeInsight(headA: node1, headB: node10)
 
 
 // Insight: Simple (no swap)
-func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n)
-    // Figure out which is longer
-    // Swap if necessary
-
-    // Calculate d
-    // Walk d for longer
-    // Walk remainder for both
-    let m = length(headA) // O(n)
-    let n = length(headB) // O(n)
-
-    let d = m - n
-    var currentA = headA
-    for _ in 1...d { // O(n)
-        currentA = currentA?.next
-    }
-
-    var currentB = headB
-    for _ in 0...n-1 { // O(n)
-        let A = currentA?.data
-        let B = currentB?.data
-        if A == B {
-            return A
-        }
-        currentA = currentA?.next
-        currentB = currentB?.next
-    }
-    return nil
-}
+//func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n)
+//    // Figure out which is longer
+//    // Swap if necessary
+//
+//    // Calculate d
+//    // Walk d for longer
+//    // Walk remainder for both
+//    let m = length(headA) // O(n)
+//    let n = length(headB) // O(n)
+//
+//    let d = m - n
+//    var currentA = headA
+//    for _ in 1...d { // O(n)
+//        currentA = currentA?.next
+//    }
+//
+//    var currentB = headB
+//    for _ in 0...n-1 { // O(n)
+//        let A = currentA?.data
+//        let B = currentB?.data
+//        if A == B {
+//            return A
+//        }
+//        currentA = currentA?.next
+//        currentB = currentB?.next
+//    }
+//    return nil
+//}
 
