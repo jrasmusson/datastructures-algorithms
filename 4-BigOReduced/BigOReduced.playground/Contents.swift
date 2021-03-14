@@ -14,7 +14,7 @@ func someFunc(_ n: Int) {
     a = 5
     a += 1
     
-    for _ in 0..<n {
+    for _ in 0..<n { 
         // simple statements
     }
     
@@ -25,6 +25,51 @@ func someFunc(_ n: Int) {
         }
     }
 }
+
+func dropConstants(_ n: Int) {
+    for _ in 0..<n { // O(n)
+        // simple statements
+    }
+
+    for _ in 0..<n { // O(n)
+        // simple statements
+    }
+
+    for _ in 0..<n { // O(n)
+        // simple statements
+    }
+}
+
+func addDominant(_ n: Int, _ m: Int) {
+    for _ in 0..<n { // O(n)
+        // simple statements
+    }
+
+    for _ in 0..<m { // O(m)
+        // simple statements
+    }
+}
+
+func nested(_ n: Int, _ m: Int) {
+    for _ in 0..<n { // O(n)
+        // simple statements
+        for _ in 0..<m { // O(m)
+            // simple statements
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 func someConditional(_ n: Int) {
     if n == 2 {
@@ -40,6 +85,17 @@ func someConditional(_ n: Int) {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /*
    _                  _
