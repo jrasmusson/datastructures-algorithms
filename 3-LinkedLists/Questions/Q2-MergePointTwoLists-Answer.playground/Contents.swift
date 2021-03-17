@@ -74,7 +74,7 @@ func findMergeBrute(headA: Node?, headB: Node?) -> Int? { // O(m*n)
 }
 
 // Trade-off time for space
-func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? { // O(2m + 2n)
+func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? { // O(2m + 2n) > O(m + n)
     // Create a Dict of all nodes of B
     // Use it to loop up each element of A
     let m = length(headA) // O(m)
