@@ -21,27 +21,6 @@ class Node {
 class BST {
     var root: Node?
 
-    func find(key: Int) -> Int {
-        guard let root = root else { return 0 }
-        guard let node = find(root, key) else { return 0 }
-        
-        return node.key
-    }
-
-    private func find(_ node: Node?, _ key: Int) -> Node? {
-        guard let node = node else { return nil }
-        
-        if node.key == key {
-            return node
-        } else if key < node.key {
-            return find(node.left, key)
-        } else if key > node.key {
-            return find(node.right, key)
-        }
-        return nil
-        // Note: duplicate keys not allowed so don't need to check
-    }
-    
     func insert(key: Int) {
         root = insertItem(root, key)
     }
@@ -67,6 +46,36 @@ class BST {
         return node;
     }
     
+    func find(key: Int) -> Int? {
+        guard let root = root else { return nil }
+        guard let node = find(root, key) else { return nil }
+        
+        return node.key
+    }
+
+    private func find(_ node: Node?, _ key: Int) -> Node? {
+        guard let node = node else { return nil }
+        
+        if node.key == key {
+            return node
+        } else if key < node.key {
+            return find(node.left, key)
+        } else if key > node.key {
+            return find(node.right, key)
+        }
+        return nil
+        // Note: duplicate keys not allowed so don't need to check
+    }
+    
+    func findKey() -> Int {
+        guard let root = root else { return 0 }
+        return findMin(root).key;
+    }
+
+    private func findMin(_ node: Node) -> Node {
+        return node.min;
+    }
+
     // Delete: Three cases
     // 1. No child
     // 2. One child
@@ -89,21 +98,13 @@ class BST {
     // Here we are taking advantage of that fact to make our more complicated
     // 3rd case delete more simple by transforming it into case 1.
 
-    func findMinKey() -> Int {
-        guard let root = root else { return 0 }
-        return findMin(root).key;
-    }
-
-    func findMin(_ node: Node) -> Node {
-        return node.min;
-    }
 
     func delete(key: Int) {
         guard let _ = root else { return }
         root = delete(&root, key);
     }
     
-    func delete(_  node: inout Node?, _ key: Int) -> Node? {
+    private func delete(_  node: inout Node?, _ key: Int) -> Node? {
         guard let nd = node else { return nil }
 
         if key < nd.key {
@@ -164,11 +165,11 @@ class BST {
         }
      
         let str = """
-                     \(root!.key)
-                    /  \\
-                   \(rootLeftKey!)     \(rootRightKey!)
-                  / \\  /   \\
-                 \(rootLeftLeftKey)   \(rootLeftRightKey) \(rootRightLeftKey)    \(rootRightRightKey)
+                       \(root!.key)
+                    /    \\
+                   \(rootLeftKey!)      \(rootRightKey!)
+                  / \\    /  \\
+                 \(rootLeftLeftKey)   \(rootLeftRightKey)  \(rootRightLeftKey)    \(rootRightRightKey)
         """
         
         print(str)
