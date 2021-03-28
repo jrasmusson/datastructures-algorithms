@@ -1,4 +1,13 @@
-import UIKit
+import Foundation
+import XCTest
+
+/*
+ ___ _                      ___                  _      _____
+| _ |_)_ _  __ _ _ _ _  _  / __| ___ __ _ _ _ __| |_   |_   _| _ ___ ___
+| _ \ | ' \/ _` | '_| || | \__ \/ -_) _` | '_/ _| ' \    | || '_/ -_) -_)
+|___/_|_||_\__,_|_|  \_, | |___/\___\__,_|_| \__|_||_|   |_||_| \___\___|
+                     |__/
+ */
 
 class Node {
     var key: Int = 0
@@ -165,13 +174,13 @@ class BST {
         }
      
         let str = """
-                       \(root!.key)
-                    /    \\
-                   \(rootLeftKey!)      \(rootRightKey!)
-                  / \\    /  \\
-                 \(rootLeftLeftKey)   \(rootLeftRightKey)  \(rootRightLeftKey)    \(rootRightRightKey)
+                      \(root!.key)
+                    /  \\
+                   \(rootLeftKey!)    \(rootRightKey!)
+                  / \\  / \\
+                 \(rootLeftLeftKey)  \(rootLeftRightKey) \(rootRightLeftKey)   \(rootRightRightKey)
         """
-        
+
         print(str)
     }
     
@@ -186,47 +195,111 @@ class BST {
      - postorder (L > R > Root) 231 Bottom up used in deletes (Bottom > Up)
      
      */
-    func printInOrderTravseral() {
-        inOrderTraversal(node: root)
-    }
+    
+    func printInOrderTravseral() { inOrderTraversal(node: root) }
     
     func inOrderTraversal(node: Node?) {
         guard let node = node else { return }
         inOrderTraversal(node: node.left)
-        print(node.key)
+        print(node.key) // root
         inOrderTraversal(node: node.right)
     }
     
-    func printPreOrderTravseral() {
-        preOrderTraversal(node: root)
-    }
+    func printPreOrderTravseral() { preOrderTraversal(node: root) }
     
     func preOrderTraversal(node: Node?) {
         guard let node = node else { return }
-        print(node.key)
+        print(node.key) // root
         preOrderTraversal(node: node.left)
         preOrderTraversal(node: node.right)
     }
 
-    func printPostOrderTravseral() {
-        postOrderTraversal(node: root)
-    }
+    func printPostOrderTravseral() { postOrderTraversal(node: root) }
     
     func postOrderTraversal(node: Node?) {
         guard let node = node else { return }
         postOrderTraversal(node: node.left)
         postOrderTraversal(node: node.right)
-        print(node.key)
+        print(node.key) // root
     }
 }
 
-let bst = BST()
-bst.insert(key: 5)
-bst.insert(key: 3)
-bst.insert(key: 2)
-bst.insert(key: 4)
-bst.insert(key: 7)
-bst.insert(key: 6)
-bst.insert(key: 8)
+class BSTTests: XCTestCase {
+    var bst: BST!
+    override func setUp() {
+        super.setUp()
+        bst = BST()
+    }
+    
+    func testInsert() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+        bst.insert(key: 8)
+        
+        bst.prettyPrint()
+        
+        XCTAssertNotNil(bst.find(key: 5))
+    }
+    
+    func testDeleteNoChild() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+        bst.insert(key: 8)
+        
+        XCTAssertNotNil(bst.find(key: 2))
+        bst.delete(key: 2)
+        XCTAssertNil(bst.find(key: 2))
+    }
 
-bst.prettyPrint()
+    func testDeleteOneChild() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+//        bst.insert(key: 8)
+        
+        bst.delete(key: 7)
+        XCTAssertNil(bst.find(key: 7))
+    }
+
+    func testDeleteTwoChildren() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+        bst.insert(key: 8)
+        
+        bst.delete(key: 7)
+        XCTAssertNil(bst.find(key: 7))
+        XCTAssertNotNil(6)
+        XCTAssertNotNil(8)
+    }
+}
+
+
+// Infrastructure for running unit tests
+
+class TestObserver: NSObject, XCTestObservation {
+    func testCase(_ testCase: XCTestCase,
+                  didFailWithDescription description: String,
+                  inFile filePath: String?,
+                  atLine lineNumber: Int) {
+        assertionFailure(description, line: UInt(lineNumber))
+    }
+}
+let testObserver = TestObserver()
+XCTestObservationCenter.shared.addTestObserver(testObserver)
+BSTTests.defaultTestSuite.run()
+

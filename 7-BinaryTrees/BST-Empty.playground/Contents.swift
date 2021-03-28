@@ -1,4 +1,5 @@
-import UIKit
+import Foundation
+import XCTest
 
 /*
  ___ _                      ___                  _      _____
@@ -97,14 +98,82 @@ class BST {
     }
 }
 
-let bst = BST()
-bst.insert(key: 5)
-bst.insert(key: 3)
-bst.insert(key: 2)
-bst.insert(key: 4)
-bst.insert(key: 7)
-bst.insert(key: 6)
-bst.insert(key: 8)
+class BSTTests: XCTestCase {
+    var bst: BST!
+    override func setUp() {
+        super.setUp()
+        bst = BST()
+    }
+    
+    func testInsert() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+        bst.insert(key: 8)
+        
+        bst.prettyPrint()
+        
+        XCTAssertNotNil(bst.find(key: 5))
+    }
+    
+    func testDeleteNoChild() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+        bst.insert(key: 8)
+        
+        XCTAssertNotNil(bst.find(key: 2))
+        bst.delete(key: 2)
+        XCTAssertNil(bst.find(key: 2))
+    }
 
-//bst.prettyPrint()
+    func testDeleteOneChild() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+//        bst.insert(key: 8)
+        
+        bst.delete(key: 7)
+        XCTAssertNil(bst.find(key: 7))
+    }
+
+    func testDeleteTwoChildren() {
+        bst.insert(key: 5)
+        bst.insert(key: 3)
+        bst.insert(key: 2)
+        bst.insert(key: 4)
+        bst.insert(key: 7)
+        bst.insert(key: 6)
+        bst.insert(key: 8)
+        
+        bst.delete(key: 7)
+        XCTAssertNil(bst.find(key: 7))
+        XCTAssertNotNil(6)
+        XCTAssertNotNil(8)
+    }
+}
+
+
+// Infrastructure for running unit tests in playground
+
+class TestObserver: NSObject, XCTestObservation {
+    func testCase(_ testCase: XCTestCase,
+                  didFailWithDescription description: String,
+                  inFile filePath: String?,
+                  atLine lineNumber: Int) {
+        assertionFailure(description, line: UInt(lineNumber))
+    }
+}
+let testObserver = TestObserver()
+XCTestObservationCenter.shared.addTestObserver(testObserver)
+BSTTests.defaultTestSuite.run()
 
