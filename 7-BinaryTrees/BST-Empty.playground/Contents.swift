@@ -8,14 +8,6 @@ class Node {
     init(_ key: Int) {
         self.key = key
     }
-    
-    var min: Node {
-        if left == nil {
-            return self
-        } else {
-            return left!.min
-        }
-    }
 }
 
 class BST {
@@ -29,20 +21,32 @@ class BST {
     }
 
     func find(key: Int) -> Int? {
-        return nil
+        guard let root = root else { return nil }
+        guard let node = find(root, key) else { return nil }
+        
+        return node.key
     }
 
     private func find(_ node: Node?, _ key: Int) -> Node? {
+        guard let node = node else { return nil }
+        
+        if node.key == key {
+            return node
+        } else if key < node.key {
+            return find(node.left, key)
+        } else if key > node.key {
+            return find(node.right, key)
+        }
         return nil
+        // Note: duplicate keys not allowed so don't need to check
     }
     
     func findMin() -> Int {
-        guard let root = root else { return 0 }
-        return findMin(root).key;
+        return 0
     }
 
     private func findMin(_ node: Node) -> Node {
-        return node.min;
+        return Node(0)
     }
 
     func delete(key: Int) {
