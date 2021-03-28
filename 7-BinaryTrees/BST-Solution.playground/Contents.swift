@@ -40,7 +40,7 @@ class BST {
             node.right = insertItem(node.right, key)
         }
         
-        // If we get here we have have hit the bottom our or tree with a duplicate.
+        // If we get here we have have hit the bottom of our tree with a duplicate.
         // Since duplicates are not allowed in BSTs, simply ignore the duplicate,
         // and return our fully constructed tree. We are done!
         return node;
@@ -67,7 +67,7 @@ class BST {
         // Note: duplicate keys not allowed so don't need to check
     }
     
-    func findKey() -> Int {
+    func findMin() -> Int {
         guard let root = root else { return 0 }
         return findMin(root).key;
     }
@@ -230,4 +230,3 @@ bst.insert(key: 6)
 bst.insert(key: 8)
 
 bst.prettyPrint()
-

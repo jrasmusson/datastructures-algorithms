@@ -94,5 +94,5 @@ bst.insert(key: 7)
 bst.insert(key: 6)
 bst.insert(key: 8)
 
-bst.prettyPrint()
+//bst.prettyPrint()
 
