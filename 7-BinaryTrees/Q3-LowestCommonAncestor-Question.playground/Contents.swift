@@ -32,20 +32,8 @@ class BinaryTree {
     var root: Node?
     
     func lca(_ node: Node?, _ n1: Int, _ n2: Int) -> Node? {
-        if node == nil { return nil }
-        
-        // If both n1 and n2 are smaller than root, then LCA lies in left
-        if node!.data > n1 && node!.data > n2 {
-            return lca(node?.left, n1, n2)
-        }
-        
-        // If both n1 and n2 are larger than root, then LCA lies in right
-        if node!.data < n1 && node!.data < n2 {
-            return lca(node?.right, n1, n2)
-        }
-        
-        // Else we are at the node which is the LCA
-        return node
+        // Magic happens here...
+        return nil
     }
 }
 
