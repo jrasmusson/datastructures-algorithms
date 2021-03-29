@@ -30,6 +30,8 @@ func checkBST(root: Node?) -> Bool {
 }
 
 private func isBST(_ node: Node?, _ min: Int?, _ max: Int?) -> Bool {
+    print("Comparing: \(node?.key) min: \(min) max: \(max)")
+    
     // if nil we hit the end of our branch - OK
     guard let node = node else {
         return true
@@ -40,6 +42,7 @@ private func isBST(_ node: Node?, _ min: Int?, _ max: Int?) -> Bool {
         print("min: \(min) key: \(node.key)")
         return false
     }
+    
     // check if max > parent
     if let max = max, node.key >= max {
         print("max: \(max) key: \(node.key)")
@@ -48,6 +51,7 @@ private func isBST(_ node: Node?, _ min: Int?, _ max: Int?) -> Bool {
     
     // if min max OK, got to next level passing in min/max and parent
     return isBST(node.left, min, node.key) && isBST(node.right, node.key, max)
+
 }
 
 class Tests: XCTestCase {
@@ -85,7 +89,6 @@ class Tests: XCTestCase {
 
         XCTAssertFalse(checkBST(root: root))
     }
-
 }
 
 // Infrastructure
