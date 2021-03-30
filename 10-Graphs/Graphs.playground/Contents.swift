@@ -108,7 +108,7 @@ class Graph {
                     result.append(n)
                 }
             }
-        }
+         }
         
         return result
     }
@@ -147,15 +147,15 @@ class Graph {
 
 // Need to have as many vertices as you have edges
 let g = Graph(8)
-g.addEdge(v: 0, w: 1);
-g.addEdge(v: 1, w: 4);
-g.addEdge(v: 4, w: 6);
-g.addEdge(v: 6, w: 0);
-g.addEdge(v: 1, w: 5);
-g.addEdge(v: 5, w: 3);
-g.addEdge(v: 3, w: 0);
-g.addEdge(v: 5, w: 2);
-g.addEdge(v: 2, w: 7);
+g.addEdge(v: 0, w: 1)
+g.addEdge(v: 1, w: 4)
+g.addEdge(v: 4, w: 6)
+g.addEdge(v: 6, w: 0)
+g.addEdge(v: 1, w: 5)
+g.addEdge(v: 5, w: 3)
+g.addEdge(v: 3, w: 0)
+g.addEdge(v: 5, w: 2)
+g.addEdge(v: 2, w: 7)
 
 g.BFS(s: 0)
 g.DFS(s: 0)
