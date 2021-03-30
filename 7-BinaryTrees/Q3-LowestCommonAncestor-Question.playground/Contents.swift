@@ -38,14 +38,9 @@ class BinaryTree {
 }
 
 let tree = BinaryTree()
-tree.root = Node(20)
-tree.root?.left = Node(8)
-tree.root?.right = Node(22)
-tree.root?.left?.left = Node(4)
-tree.root?.left?.right = Node(12)
-tree.root?.left?.right?.left = Node(10)
-tree.root?.left?.right?.right = Node(14)
+// Step 1: Build the BST
 
+// Step 2: Make it pass these test cases
 var n1 = 10, n2 = 14
 var t = tree.lca(tree.root, n1, n2)
 print("LCA of \(n1) and \(n2) is \(String(describing: t?.data))") // 12
