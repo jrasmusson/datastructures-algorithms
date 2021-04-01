@@ -89,52 +89,14 @@ import Foundation
 
  */
 
-struct Edge: Equatable {
-    let from: Int
-    let to: Int
-    
-    init(_ from: Int, _ to: Int) {
-        self.from = from
-        self.to = to
-    }
-}
-
 func solution(_ A: [Int], _ B: [Int]) -> Bool {
-
-    // make edges
-    var edges: [Edge] = []
-    for n in 0..<A.count {
-        edges.append(Edge(A[n], B[n]))
-    }
-    
-    // search edges (both directions)
-    for i in 1..<A.count - 1 {
-        print("Looking for: \(i) -> \(i+1)")
-        if edges.contains(Edge(i, i+1)) || edges.contains(Edge(i+1, i)) {
-            continue
-        } else {
-            return false
-        }
-    }
-    
-    return true
+    return false
 }
 
 // Tips
 // 1. Work out on paper
 // 2. Work on simple case manually.
-
-//var given = Set<Pair>()
-//given.insert(Pair(1, 2))
-//given.insert(Pair(3, 2))
-//
-//// walk in order
-//given.contains(Pair(1, 2)) || given.contains(Pair(2, 1))
-//given.contains(Pair(2, 3)) || given.contains(Pair(3, 2))
-
 // 3. Read problem carefully.
-// 4. Loose and agressive.
-
 
 /*
  Example 1:
@@ -212,3 +174,19 @@ solution([2, 4, 5, 3], [3, 5, 6, 4]) // false
  */
 solution([1, 3], [2, 2]) // true
 
+/*
+ 
+ Example 5:
+
+ ┌─────┐    ┌─────┐    ┌─────┐
+ │  2  │────┤  3  │────│  4  │
+ └─────┘    └─────┘    └─────┘
+ 
+ Given N = 3
+       A = [2, 3]
+       B = [3, 4]
+       Function should return false.
+
+ */
+
+solution([2, 3], [3, 4]) // false

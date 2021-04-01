@@ -134,14 +134,14 @@ class Graph {
         
         while stack.count > 0 {
             let current = stack.pop()!
-//            print("Popping \(s)")
+//            print("Popping \(current)")
             result.append(current)
             
             // Iterate over all neighbours adding to queue and popping deep as we go
             for n in adj[current] {
                 if visited[n] == false {
                     visited[n] = true
-//                    print("Pushing")
+//                    print("Pushing - \(n)")
                     stack.push(n)
                 }
             }
@@ -154,23 +154,14 @@ class Graph {
 // Need to have as many vertices as you have edges
 let g = Graph(8)
 g.addEdge(v: 0, w: 1)
-g.addEdge(v: 1, w: 0)
 g.addEdge(v: 1, w: 4)
-g.addEdge(v: 4, w: 1)
 g.addEdge(v: 4, w: 6)
-g.addEdge(v: 6, w: 4)
 g.addEdge(v: 6, w: 0)
-g.addEdge(v: 0, w: 6)
 g.addEdge(v: 1, w: 5)
-g.addEdge(v: 5, w: 1)
 g.addEdge(v: 5, w: 3)
-g.addEdge(v: 3, w: 5)
 g.addEdge(v: 3, w: 0)
-g.addEdge(v: 0, w: 3)
 g.addEdge(v: 5, w: 2)
-g.addEdge(v: 2, w: 5)
 g.addEdge(v: 2, w: 7)
-g.addEdge(v: 7, w: 2)
 
 //g.BFS(s: 0)
 print(g.DFS(s: 0))
