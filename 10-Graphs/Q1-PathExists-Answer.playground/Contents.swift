@@ -114,12 +114,13 @@ func solution(_ A: [Int], _ B: [Int]) -> Bool {
     } else if A.count == 2 {
         return (edges.contains(Edge(1, 2)) || edges.contains(Edge(2, 1))) &&
                (edges.contains(Edge(2, 3)) || edges.contains(Edge(3, 2)))
-    } else {
-        for i in 1..<A.count - 1 {
-            if edges.contains(Edge(i, i+1)) || edges.contains(Edge(i+1, i)) { continue }
-            else { return false }
-        }
     }
+    
+    for i in 1..<A.count - 1 {
+        if edges.contains(Edge(i, i+1)) || edges.contains(Edge(i+1, i)) { continue }
+        else { return false }
+    }
+
     return true
 }
 

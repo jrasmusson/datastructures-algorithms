@@ -89,38 +89,8 @@ import Foundation
 
  */
 
-struct Edge: Equatable {
-    let from: Int
-    let to: Int
-    
-    init(_ from: Int, _ to: Int) {
-        self.from = from
-        self.to = to
-    }
-}
-
 func solution(_ A: [Int], _ B: [Int]) -> Bool {
-    guard A.count > 0 && B.count > 0 else { return false }
-    
-    // make edges
-    var edges: [Edge] = []
-    for n in 0..<A.count {
-        edges.append(Edge(A[n], B[n]))
-    }
-
-    // walk cases
-    if A.count == 1 {
-        return edges.contains(Edge(1, 2)) || edges.contains(Edge(2, 1))
-    } else if A.count == 2 {
-        return (edges.contains(Edge(1, 2)) || edges.contains(Edge(2, 1))) &&
-               (edges.contains(Edge(2, 3)) || edges.contains(Edge(3, 2)))
-    } else {
-        for i in 1..<A.count - 1 {
-            if edges.contains(Edge(i, i+1)) || edges.contains(Edge(i+1, i)) { continue }
-            else { return false }
-        }
-    }
-    return true
+    return false
 }
 
 solution([], []) // false
