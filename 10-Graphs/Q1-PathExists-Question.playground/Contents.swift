@@ -89,104 +89,45 @@ import Foundation
 
  */
 
-func solution(_ A: [Int], _ B: [Int]) -> Bool {
-    return false
+struct Edge: Equatable {
+    let from: Int
+    let to: Int
+    
+    init(_ from: Int, _ to: Int) {
+        self.from = from
+        self.to = to
+    }
 }
 
-// Tips
-// 1. Work out on paper
-// 2. Work on simple case manually.
-// 3. Read problem carefully.
+func solution(_ A: [Int], _ B: [Int]) -> Bool {
+    guard A.count > 0 && B.count > 0 else { return false }
+    
+    // make edges
+    var edges: [Edge] = []
+    for n in 0..<A.count {
+        edges.append(Edge(A[n], B[n]))
+    }
 
-/*
- Example 1:
+    // walk cases
+    if A.count == 1 {
+        return edges.contains(Edge(1, 2)) || edges.contains(Edge(2, 1))
+    } else if A.count == 2 {
+        return (edges.contains(Edge(1, 2)) || edges.contains(Edge(2, 1))) &&
+               (edges.contains(Edge(2, 3)) || edges.contains(Edge(3, 2)))
+    } else {
+        for i in 1..<A.count - 1 {
+            if edges.contains(Edge(i, i+1)) || edges.contains(Edge(i+1, i)) { continue }
+            else { return false }
+        }
+    }
+    return true
+}
 
-          ┌─────┐
-   ┌──────│  3  │──────┐
-   │      └─────┘      │
-   │         │         │
-┌─────┐      │      ┌─────┐
-│  2  │      │      │  4  │
-└─────       │      └─────┘
-   │      ┌─────┐      │
-   └──────│  1  │──────┘
-          └─────┘
- 
- Given N = 4
-       A = [1, 2, 4, 4, 3]
-       B = [2, 3, 1, 3, 1]
-       Function should return true.
-
- */
-solution([1, 2, 4, 4, 3], [2, 3, 1, 3, 1]) // true
-
-/*
- Example 2:
-
-          ┌─────┐
-   ┌──────│  4  │──────┐
-   │      └─────┘      │
-   │         │         │
-┌─────┐      │      ┌─────┐
-│  2  │      │      │  3  │
-└─────       │      └─────┘
-   │      ┌─────┐      │
-   └──────│  1  │──────┘
-          └─────┘
- 
- Given N = 4
-       A = [1, 2, 1, 3]
-       B = [2, 4, 3, 4]
-       Function should return false.
- */
-solution([1, 2, 1, 3], [2, 4, 3, 4]) // false
-
-/*
- Example 3:
-
- ┌─────┐
- │  1  │
- └─────┘
-                             
-┌─────┐    ┌─────┐    ┌─────┐   ┌─────┐    ┌─────┐
-│  2  │────┤  3  │────│  4  │───│  5  │────│  6  │
-└─────┘    └─────┘    └─────┘   └─────┘    └─────┘
- 
- Given N = 6
-       A = [2, 4, 5, 3]
-       B = [3, 5, 6, 4]
-       Function should return false.
- */
-solution([2, 4, 5, 3], [3, 5, 6, 4]) // false
-
-/*
- Example 4:
-
- ┌─────┐    ┌─────┐    ┌─────┐
- │  1  │────┤  2  │────│  3  │
- └─────┘    └─────┘    └─────┘
-
- Given N = 3
-       A = [1, 3]
-       B = [2, 2]
-       Function should return true.
-
- */
+solution([], []) // false
+solution([1], [2]) // true
 solution([1, 3], [2, 2]) // true
-
-/*
- 
- Example 5:
-
- ┌─────┐    ┌─────┐    ┌─────┐
- │  2  │────┤  3  │────│  4  │
- └─────┘    └─────┘    └─────┘
- 
- Given N = 3
-       A = [2, 3]
-       B = [3, 4]
-       Function should return false.
-
- */
-
+solution([1, 3], [2, 99]) // false
 solution([2, 3], [3, 4]) // false
+solution([1, 2, 4, 4, 3], [2, 3, 1, 3, 1]) // true
+solution([1, 2, 1, 3], [2, 4, 3, 4]) // false
+solution([2, 4, 5, 3], [3, 5, 6, 4]) // false
