@@ -33,24 +33,8 @@ class Node {
     }
 }
 
-func removeDuplictates(_ head: Node?) {
-    // Create a hash table or set to store the unique values.
-    // Then delete the duplicate as soon as we detect it while walking the list.
-    // Algorithm is O(n).
-
-    var uniques = Set<Int>()
-    var previous: Node? = nil
-    var current = head
-
-    while current != nil {
-        if uniques.contains(current!.data) {
-            previous!.next = current!.next // skip this duplicate
-        } else {
-            uniques.insert(current!.data)
-            previous = current
-        }
-        current = current!.next
-    }
+func removeDuplictates(_ head: Node?) -> Node? {
+    return nil
 }
 
 let node3 = Node(3)
