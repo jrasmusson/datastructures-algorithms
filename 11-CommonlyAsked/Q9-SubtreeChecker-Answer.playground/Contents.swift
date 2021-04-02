@@ -9,7 +9,7 @@ import UIKit
  // Challenge: T1 is a large binary tree and T2 is a smaller one. Write an
  // algorithm to determine if T2 is a subtree of T1.
 
- Large
+ Root
                 5
               3   7
              2 4 6 8
