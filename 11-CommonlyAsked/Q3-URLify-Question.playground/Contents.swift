@@ -7,7 +7,7 @@ import UIKit
  \___/|_|_\____|_|_|  \_, |
                       |__/
 
-  Challenge: See if you can replaces all the spaces in a a string with the
+  Challenge: See if you can replace all the spaces in a a string with the
   ASCII symbol for space '%20'. Assume you are given the length of the final
   string. Hint: Use array of char[].
 
