@@ -16,17 +16,8 @@ import UIKit
 
  */
 
-/*
- We could create a Dictionary of each word, and do a count comparison
- like we did in ransom note. Or, we could note that two sorted String
- equal to each other would also be anagrams.
- */
-
 func isAnagram(_ text: String, _ anagram: String) -> Bool {
-    let chars1 = Array(text).sorted()
-    let chars2 = Array(anagram).sorted()
-    
-    return chars1 == chars2
+    return false
 }
 
 isAnagram("arc", "car")         // true

@@ -29,3 +29,10 @@ isPalindrome("dad")
 isPalindrome("radar")
 isPalindrome("rush")
 isPalindrome("yes")
+
+// If your interviewer is OK, you could also do this.
+// But best to know above trick in case they want you to do manually.
+func isPalindromeSimple(_ value: String) -> Bool {
+    return value == String(value.reversed())
+}
+
