@@ -18,7 +18,7 @@ func reverse(_ x: Int) -> Int {
     let isNegative = x < 0
     
     if isNegative {
-        x =  abs(x)
+        x = abs(x)
     }
     
     var reverse = 0
