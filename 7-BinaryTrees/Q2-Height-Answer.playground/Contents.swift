@@ -105,8 +105,6 @@ class Tests: XCTestCase {
 
         XCTAssertEqual(3, solution(tree))
     }
-    
-
 }
 
 // Infrastructure
