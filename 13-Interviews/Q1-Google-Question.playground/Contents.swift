@@ -6,8 +6,6 @@ import UIKit
 |(_ / _ \/ _ \/ _` | / -_)
 \___\___/\___/\__, |_\___|
               |___/
-
- // https://www.youtube.com/watch?v=XKu_SEDAykw&ab_channel=LifeatGoogle
  
  Given a set of numbers, determine if there is a pair that equals a given sum.
  
