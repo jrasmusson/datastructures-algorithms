@@ -30,6 +30,11 @@ class Node {
         }
         return newNode
     }
+    
+    func inOrderTraversal(node: Node?) {
+        // Do your work here...
+    }
+
 }
 
 class Tests: XCTestCase {
@@ -48,6 +53,9 @@ class Tests: XCTestCase {
         XCTAssertEqual(newCopy.data, node1.data)
         XCTAssertEqual(newCopy.left!.data, node1.left!.data)
         XCTAssertEqual(newCopy.right!.data, node1.right!.data)
+        
+        // print nodes inorder traversal
+        
     }
     
     func testDeepCopy() {
@@ -84,6 +92,9 @@ class Tests: XCTestCase {
         
         // Copy should still point to old value - 8
         XCTAssertEqual(newCopy.right!.right!.data, 8)
+        
+        // print nodes inorder traversal
+        
     }
 }
 
@@ -99,3 +110,4 @@ class TestObserver: NSObject, XCTestObservation {
 let testObserver = TestObserver()
 XCTestObservationCenter.shared.addTestObserver(testObserver)
 Tests.defaultTestSuite.run()
+
