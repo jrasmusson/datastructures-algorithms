@@ -34,27 +34,8 @@ solution([String](), [String](), "")
 solution(A, B, "")
 
 public func solutionDict(_ A : [String], _ B : [String], _ P : String) -> String {
-
-    // Create a dictionary of name / numbers
-    var dict = [String: String]()
-    
-    for i in 0..<A.count {
-        dict[A[i]] = B[i]
-    }
-    
-    // look for matches
-    let matches = dict.filter { $0.value.contains(P) }
-    
-    if matches.count == 0 {
-        return "NO CONTACT"
-    } else if matches.count == 1 {
-        return matches.first!.key
-    }
-    
-    // sort by key
-    let sortedKeys = matches.keys.sorted()
-    
-    return sortedKeys.first!
+    // 🕹 Game on here
+    return ""
 }
 
 
