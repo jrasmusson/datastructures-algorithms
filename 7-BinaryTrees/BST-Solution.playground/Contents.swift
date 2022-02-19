@@ -114,42 +114,42 @@ class BST {
     }
     
     private func delete(_  node: inout Node?, _ key: Int) -> Node? {
-        guard let nd = node else { return nil }
+        guard let insideNode = node else { return nil }
 
-        if key < nd.key {
-            nd.left = delete(&nd.left, key)
-        } else if key > nd.key {
-            nd.right = delete(&nd.right, key)
+        if key < insideNode.key {
+            insideNode.left = delete(&insideNode.left, key)
+        } else if key > insideNode.key {
+            insideNode.right = delete(&insideNode.right, key)
         } else {
             // Woohoo! Found you. This is the node we want to delete.
 
             // Case 1: No child
-            if nd.left == nil && nd.right == nil {
-                node = nil
+            if insideNode.left == nil && insideNode.right == nil {
+                return nil
             }
             
             // Case 2: One child
-            else if nd.left == nil {
-                node = nd.right
+            else if insideNode.left == nil {
+                return insideNode.right // check delete(&insideNode.right, key) not necessary because we have already found
             }
-            else if nd.right == nil {
-                node = nd.left
+            else if insideNode.right == nil {
+                return insideNode.left // delete(&insideNode.left, key)
             }
             
             // Case 3: Two children
             else {
                 // Find the minimum node on the right (could also find max on the left)
-                let minRight = findMin(nd.right!)
+                let minRight = findMin(insideNode.right!)
                 
                 // Duplicate it by copying its value here
-                node!.key = minRight.key
+                insideNode.key = minRight.key
                 
                 // Now go ahead and delete the node we just duplicated (same key)
-                node!.right = delete(&node!.right, node!.key)
+                insideNode.right = delete(&insideNode.right, insideNode.key)
             }
         }
         
-        return nil
+        return insideNode
     }
 
     func prettyPrint() {
@@ -239,12 +239,18 @@ class BSTTests: XCTestCase {
         bst.insert(key: 7)
         bst.insert(key: 6)
         bst.insert(key: 8)
-        
-        bst.prettyPrint()
-        
+
+//        bst.prettyPrint()
+
         XCTAssertNotNil(bst.find(key: 5))
+        XCTAssertNotNil(bst.find(key: 3))
+        XCTAssertNotNil(bst.find(key: 2))
+        XCTAssertNotNil(bst.find(key: 4))
+        XCTAssertNotNil(bst.find(key: 7))
+        XCTAssertNotNil(bst.find(key: 6))
+        XCTAssertNotNil(bst.find(key: 8))
     }
-    
+
     func testDeleteNoChild() {
         bst.insert(key: 5)
         bst.insert(key: 3)
@@ -253,10 +259,17 @@ class BSTTests: XCTestCase {
         bst.insert(key: 7)
         bst.insert(key: 6)
         bst.insert(key: 8)
-        
+
         XCTAssertNotNil(bst.find(key: 2))
         bst.delete(key: 2)
         XCTAssertNil(bst.find(key: 2))
+
+        XCTAssertNotNil(bst.find(key: 5))
+        XCTAssertNotNil(bst.find(key: 3))
+        XCTAssertNotNil(bst.find(key: 4))
+        XCTAssertNotNil(bst.find(key: 7))
+        XCTAssertNotNil(bst.find(key: 6))
+        XCTAssertNotNil(bst.find(key: 8))
     }
 
     func testDeleteOneChild() {
@@ -267,9 +280,15 @@ class BSTTests: XCTestCase {
         bst.insert(key: 7)
         bst.insert(key: 6)
 //        bst.insert(key: 8)
-        
+
+        XCTAssertNotNil(bst.find(key: 2))
         bst.delete(key: 7)
         XCTAssertNil(bst.find(key: 7))
+
+        XCTAssertNotNil(bst.find(key: 5))
+        XCTAssertNotNil(bst.find(key: 3))
+        XCTAssertNotNil(bst.find(key: 4))
+        XCTAssertNotNil(bst.find(key: 6))
     }
 
     func testDeleteTwoChildren() {
@@ -280,11 +299,18 @@ class BSTTests: XCTestCase {
         bst.insert(key: 7)
         bst.insert(key: 6)
         bst.insert(key: 8)
-        
+
+        XCTAssertNotNil(bst.find(key: 2))
+        bst.printInOrderTravseral()
         bst.delete(key: 7)
+        bst.printInOrderTravseral()
         XCTAssertNil(bst.find(key: 7))
-        XCTAssertNotNil(6)
-        XCTAssertNotNil(8)
+
+        XCTAssertNotNil(bst.find(key: 5))
+        XCTAssertNotNil(bst.find(key: 3))
+        XCTAssertNotNil(bst.find(key: 4))
+        XCTAssertNotNil(bst.find(key: 6))
+        XCTAssertNotNil(bst.find(key: 8))
     }
 }
 
