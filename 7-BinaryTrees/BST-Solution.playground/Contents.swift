@@ -114,42 +114,42 @@ class BST {
     }
     
     private func delete(_  node: inout Node?, _ key: Int) -> Node? {
-        guard let insideNode = node else { return nil }
+        guard let nd = node else { return nil }
 
-        if key < insideNode.key {
-            insideNode.left = delete(&insideNode.left, key)
-        } else if key > insideNode.key {
-            insideNode.right = delete(&insideNode.right, key)
+        if key < nd.key {
+            nd.left = delete(&nd.left, key)
+        } else if key > nd.key {
+            nd.right = delete(&nd.right, key)
         } else {
             // Woohoo! Found you. This is the node we want to delete.
 
             // Case 1: No child
-            if insideNode.left == nil && insideNode.right == nil {
+            if nd.left == nil && nd.right == nil {
                 return nil
             }
             
             // Case 2: One child
-            else if insideNode.left == nil {
-                return insideNode.right // check delete(&insideNode.right, key) not necessary because we have already found
+            else if nd.left == nil {
+                return nd.right // check delete(&insideNode.right, key) not necessary because we have already found
             }
-            else if insideNode.right == nil {
-                return insideNode.left // delete(&insideNode.left, key)
+            else if nd.right == nil {
+                return nd.left // delete(&insideNode.left, key)
             }
             
             // Case 3: Two children
             else {
                 // Find the minimum node on the right (could also find max on the left)
-                let minRight = findMin(insideNode.right!)
+                let minRight = findMin(nd.right!)
                 
                 // Duplicate it by copying its value here
-                insideNode.key = minRight.key
+                nd.key = minRight.key
                 
                 // Now go ahead and delete the node we just duplicated (same key)
-                insideNode.right = delete(&insideNode.right, insideNode.key)
+                nd.right = delete(&nd.right, nd.key)
             }
         }
         
-        return insideNode
+        return nd
     }
 
     func prettyPrint() {
@@ -240,7 +240,7 @@ class BSTTests: XCTestCase {
         bst.insert(key: 6)
         bst.insert(key: 8)
 
-//        bst.prettyPrint()
+        bst.prettyPrint()
 
         XCTAssertNotNil(bst.find(key: 5))
         XCTAssertNotNil(bst.find(key: 3))
@@ -301,9 +301,7 @@ class BSTTests: XCTestCase {
         bst.insert(key: 8)
 
         XCTAssertNotNil(bst.find(key: 2))
-        bst.printInOrderTravseral()
         bst.delete(key: 7)
-        bst.printInOrderTravseral()
         XCTAssertNil(bst.find(key: 7))
 
         XCTAssertNotNil(bst.find(key: 5))
