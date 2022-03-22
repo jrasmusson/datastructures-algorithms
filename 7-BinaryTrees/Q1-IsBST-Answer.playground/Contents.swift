@@ -49,9 +49,8 @@ private func isBST(_ node: Node?, _ min: Int?, _ max: Int?) -> Bool {
         return false
     }
     
-    // if min max OK, got to next level passing in min/max and parent
+    // if min max OK, go to next level passing in min/max and parent
     return isBST(node.left, min, node.key) && isBST(node.right, node.key, max)
-
 }
 
 class Tests: XCTestCase {
