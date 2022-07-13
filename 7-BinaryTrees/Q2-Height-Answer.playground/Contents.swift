@@ -3,7 +3,7 @@ import XCTest
 
 /*
  TreeHeight
- https://app.codility.com/programmers/lessons/99-future_training/tree_height/
+ https://app.codility.com/programmers/trainings/4/tree_height/
  https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search%20Tree
  
  Height is the number of steps to the lowest leaf.

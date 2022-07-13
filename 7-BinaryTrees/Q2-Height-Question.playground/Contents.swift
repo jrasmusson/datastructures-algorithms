@@ -3,7 +3,7 @@ import XCTest
 
 /*
  TreeHeight
- https://app.codility.com/programmers/lessons/99-future_training/tree_height/
+ https://app.codility.com/programmers/trainings/4/tree_height/
  
  Height is the number of steps to the lowest leaf.
  Length of the longest path.
