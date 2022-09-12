@@ -62,7 +62,9 @@ let node2 = Node(2, node3)
 let node1 = Node(1, node2)
 
 // 10 11 12 13 4 5 6
-let node11 = Node(11, node4)
+let node13 = Node(13, node4)
+let node12 = Node(12, node13)
+let node11 = Node(11, node12)
 let node10 = Node(10, node11)
 
 printLinkedList(node1)
