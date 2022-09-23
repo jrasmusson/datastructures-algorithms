@@ -3,7 +3,7 @@ import UIKit
 // https://www.fullstack.cafe/interview-questions/stacks
 
 /*
- Giving a String, write a function that reserves the String
+ Giving a String, write a function that reverses the String
  using a stack.
  */
 
