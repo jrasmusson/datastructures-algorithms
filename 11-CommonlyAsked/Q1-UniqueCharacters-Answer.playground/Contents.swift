@@ -19,6 +19,7 @@ import UIKit
        - An array that counts the number of times a character occurs
  */
 
+// Complexity O(n)
 func isUnique(_ text: String) -> Bool {
     var foundChars = [Character:Bool]()
     let chars = Array(text)
@@ -32,6 +33,23 @@ func isUnique(_ text: String) -> Bool {
     return true
 }
 
+// Complexity O(1) 
+func isUniqueCount(_ text: String) -> Bool {
+
+    let arrayСhar = Array(text)
+    let noDuplicates = Set(text)
+    
+    if arrayСhar.count == noDuplicates.count {
+        return true
+    }
+    
+   return false
+}
+
 isUnique("ab")
 isUnique("aa")
 isUnique("abcdefghijklmnopqrstuvwxyz")
+
+isUniqueCount("ab")
+isUniqueCount("aa")
+isUniqueCount("abcdefghijklmnopqrstuvwxyz")
