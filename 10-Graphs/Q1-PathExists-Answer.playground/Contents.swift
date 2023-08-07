@@ -101,6 +101,7 @@ struct Edge: Equatable {
 
 func solution(_ A: [Int], _ B: [Int]) -> Bool {
     guard A.count > 0 && B.count > 0 else { return false }
+    let maxValue = max(A.max()!, B.max()!)
     
     // make edges
     var edges: [Edge] = []
@@ -116,7 +117,7 @@ func solution(_ A: [Int], _ B: [Int]) -> Bool {
                (edges.contains(Edge(2, 3)) || edges.contains(Edge(3, 2)))
     }
     
-    for i in 1..<A.count - 1 {
+    for i in 1..<maxValue - 1 {
         if edges.contains(Edge(i, i+1)) || edges.contains(Edge(i+1, i)) { continue }
         else { return false }
     }
