@@ -18,19 +18,6 @@ import UIKit
  */
 
 func solutionQueueRight(A: [Int], K: Int) -> [Int] {
-    guard !A.isEmpty else { return [] }
-    guard K > 0 else { return A }
-
-    var result = A
-
-    // treat like a queue enqueuing and dequeuing off the end
-    for _ in 1...K {
-        let last = result.last!
-        result.insert(last, at: 0)
-        result.remove(at: A.count)
-    }
-
-    return result
 }
 
 solutionQueueRight(A: [1, 2, 3, 4, 5], K: 1) // [5, 1, 2, 3, 4]
