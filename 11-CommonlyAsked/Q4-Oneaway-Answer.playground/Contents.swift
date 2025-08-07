@@ -43,7 +43,7 @@ func oneAway(_ first: String, _ second: String) -> Bool {
 // For example:
 //      pale
 //      i
-//      pble
+//      ple
 //      j
 //
 // As soon as you detect that one of the characters doesn't match,
